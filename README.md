@@ -1,6 +1,6 @@
 # EF Software Studio
 
-Fatih Semiz'in geliştirici sitesi — **https://fsemizz.github.io**
+Fatih Semiz'in geliştirici sitesi — **https://fsemizz.github.io/efsoftware/**
 
 GitHub Pages ile `main` dalının kökünden yayınlanır; derleme adımı yoktur.
 
