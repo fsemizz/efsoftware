@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EF Software Studio</title>
+  <meta name="description" content="EF Software Studio — Fatih Semiz'in bağımsız yazılım stüdyosu. CL Fantasy Wizard ve CodeKids projeleri.">
+  <meta name="author" content="Fatih Semiz">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0a2a5c">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="EF Software Studio">
+  <meta property="og:description" content="Yenilikçi yazılımlar geliştiriyoruz. Creating innovative software.">
+  <meta property="og:url" content="https://fsemizz.github.io/">
+  <meta property="og:image" content="https://fsemizz.github.io/assets/img/ef-emblem.jpg">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #071a3a;
+      --bg-2: #0a2a5c;
+      --surface: rgba(255, 255, 255, 0.05);
+      --border: rgba(120, 190, 255, 0.18);
+      --text: #eaf3ff;
+      --muted: #9db6d8;
+      --cyan: #3fd0e0;
+      --brand: linear-gradient(90deg, #ff7a1a 0%, #b54bff 35%, #2f8cff 65%, #3ee089 100%);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(63, 208, 224, 0.18), transparent 60%),
+        radial-gradient(900px 500px at -10% 30%, rgba(47, 140, 255, 0.18), transparent 60%),
+        linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 55%);
+      background-color: var(--bg);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding-inline: 20px; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(7, 26, 58, 0.72);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav { display: flex; align-items: center; gap: 16px; height: 64px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; letter-spacing: 0.02em; }
+    .brand img { width: 34px; height: 34px; border-radius: 9px; }
+    .nav-links { margin-left: auto; display: flex; align-items: center; gap: 18px; font-size: 0.92rem; font-weight: 600; }
+    .nav-links a { text-decoration: none; color: var(--muted); }
+    .nav-links a:hover { color: var(--text); }
+    .lang {
+      border: 1px solid var(--border); background: var(--surface); color: var(--text);
+      font: inherit; font-size: 0.8rem; font-weight: 700; padding: 5px 10px; border-radius: 999px; cursor: pointer;
+    }
+
+    /* Hero */
+    .hero { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; padding-block: 72px 56px; }
+    .eyebrow { color: var(--cyan); font-weight: 700; font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 12px; }
+    h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.08; margin: 0 0 18px; font-weight: 800; }
+    h1 .grad { background: var(--brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .lead { color: var(--muted); font-size: 1.08rem; max-width: 34rem; margin: 0 0 28px; }
+    .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 700; font-size: 0.95rem;
+      padding: 12px 20px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface);
+    }
+    .btn.primary { background: linear-gradient(90deg, #2f8cff, #3fd0e0); border-color: transparent; color: #04122b; }
+    .btn:hover { filter: brightness(1.08); }
+    .emblem { justify-self: center; position: relative; width: min(340px, 80vw); aspect-ratio: 1; }
+    .emblem::before {
+      content: ""; position: absolute; inset: -14px; border-radius: 50%;
+      background: conic-gradient(from 200deg, #ff7a1a, #b54bff, #2f8cff, #3ee089, #ff7a1a);
+      filter: blur(26px); opacity: 0.45;
+    }
+    .emblem img { position: relative; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 2px solid rgba(255, 255, 255, 0.14); }
+
+    /* Projects */
+    section { padding-block: 40px; }
+    h2 { font-size: 1.7rem; margin: 0 0 6px; }
+    .section-sub { color: var(--muted); margin: 0 0 28px; }
+    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 18px; overflow: hidden;
+      display: flex; flex-direction: column; transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .card:hover { transform: translateY(-3px); border-color: rgba(63, 208, 224, 0.45); }
+    /* height:auto şart — yoksa <img height> özniteliği aspect-ratio'yu ezer */
+    .card .thumb { aspect-ratio: 16 / 9; width: 100%; height: auto; object-fit: cover; object-position: top; background: #0b1530; }
+    .card-body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+    .card h3 { margin: 0; font-size: 1.25rem; }
+    .card p { margin: 0; color: var(--muted); }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+    .tag { font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: rgba(63, 208, 224, 0.12); color: var(--cyan); }
+    .tag.soon { background: rgba(255, 122, 26, 0.14); color: #ffb072; }
+    .card .link { font-weight: 700; color: var(--cyan); text-decoration: none; font-size: 0.92rem; }
+    .card .link:hover { text-decoration: underline; }
+
+    /* Footer / contact */
+    footer { margin-top: 40px; border-top: 1px solid var(--border); background: rgba(4, 14, 34, 0.55); }
+    .contact { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; padding-block: 40px 24px; }
+    .contact h4 { margin: 0 0 8px; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); }
+    .contact p { margin: 0; }
+    .contact a { text-decoration: none; }
+    .contact a:hover { text-decoration: underline; }
+    .copy { color: var(--muted); font-size: 0.82rem; padding-block: 16px 28px; border-top: 1px solid rgba(120, 190, 255, 0.1); }
+
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; padding-block: 44px 24px; text-align: center; }
+      .lead { margin-inline: auto; }
+      .cta { justify-content: center; }
+      .emblem { order: -1; width: min(240px, 66vw); }
+      .nav-links a { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="EF Software Studio">
+        <img src="assets/img/ef-mark.jpg" alt="" width="34" height="34">
+        <span>EF Software Studio</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#projeler" data-i18n="nav_projects">Projeler</a>
+        <a href="#iletisim" data-i18n="nav_contact">İletişim</a>
+        <button class="lang" id="lang" type="button" aria-label="Change language">EN</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <section class="hero">
+      <div>
+        <p class="eyebrow" data-i18n="eyebrow">Yazılım Stüdyosu</p>
+        <h1>EF <span class="grad">Software Studio</span></h1>
+        <p class="lead" data-i18n="lead">Yenilikçi yazılımlar geliştiriyoruz — mobil uygulamalardan eğitim platformlarına, fikirleri sade ve kullanışlı ürünlere dönüştürüyoruz.</p>
+        <div class="cta">
+          <a class="btn primary" href="#projeler" data-i18n="cta_projects">Projeleri gör</a>
+          <a class="btn" href="mailto:fatihsemiz1990@gmail.com" data-i18n="cta_contact">İletişime geç</a>
+        </div>
+      </div>
+      <div class="emblem">
+        <img src="assets/img/ef-emblem.jpg" alt="EF Software Studio logosu" width="560" height="560">
+      </div>
+    </section>
+
+    <section id="projeler">
+      <h2 data-i18n="projects_title">Geliştirilen Projeler</h2>
+      <p class="section-sub" data-i18n="projects_sub">Stüdyodan çıkan ürünler.</p>
+      <div class="projects">
+        <article class="card">
+          <img class="thumb" src="assets/img/cl-fantasy-wizard.jpg" alt="CL Fantasy Wizard uygulama tanıtım görseli" width="1200" height="670" loading="lazy">
+          <div class="card-body">
+            <h3>CL Fantasy Wizard</h3>
+            <p data-i18n="clfw_desc">UEFA Şampiyonlar Ligi Fantasy kadronu analiz edip beklenen puan, transfer ve çip önerileri sunan, resmî olmayan Android uygulaması.</p>
+            <div class="tags">
+              <span class="tag">Android</span>
+              <span class="tag">Flutter</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag soon" data-i18n="soon">Google Play · yakında</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="thumb" src="assets/img/codekids.jpg" alt="CodeKids oyun kataloğu ekranı" width="854" height="468" loading="lazy">
+          <div class="card-body">
+            <h3>CodeKids</h3>
+            <p data-i18n="ck_desc">Çocukların öğretmen kontrolünde, bilgisayarsız oyunlarla algoritmik düşünmeyi öğrendiği kodlama platformu.</p>
+            <div class="tags">
+              <span class="tag">Web</span>
+              <span class="tag" data-i18n="tag_edu">Eğitim</span>
+            </div>
+            <a class="link" href="https://fsemizz.github.io/tubitak-proje-taslak/" target="_blank" rel="noopener" data-i18n="visit">Siteyi ziyaret et →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer id="iletisim">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <h4 data-i18n="dev">Geliştirici</h4>
+          <p>Fatih Semiz</p>
+        </div>
+        <div>
+          <h4 data-i18n="email">E-posta</h4>
+          <p><a href="mailto:fatihsemiz1990@gmail.com">fatihsemiz1990@gmail.com</a></p>
+        </div>
+        <div>
+          <h4>GitHub</h4>
+          <p><a href="https://github.com/fsemizz" target="_blank" rel="noopener">github.com/fsemizz</a></p>
+        </div>
+      </div>
+      <p class="copy">© <span id="year">2026</span> EF Software Studio · Fatih Semiz</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var en = {
+        nav_projects: "Projects",
+        nav_contact: "Contact",
+        eyebrow: "Software Studio",
+        lead: "Creating innovative software — from mobile apps to learning platforms, we turn ideas into simple, useful products.",
+        cta_projects: "See projects",
+        cta_contact: "Get in touch",
+        projects_title: "Projects",
+        projects_sub: "Products built at the studio.",
+        clfw_desc: "An unofficial Android app that analyses your UEFA Champions League Fantasy squad and suggests expected points, transfers and chip strategy.",
+        soon: "Google Play · coming soon",
+        ck_desc: "A teacher-guided coding platform where children learn algorithmic thinking through unplugged games.",
+        tag_edu: "Education",
+        visit: "Visit the site →",
+        dev: "Developer",
+        email: "Email"
+      };
+      var nodes = document.querySelectorAll("[data-i18n]");
+      var tr = {};
+      nodes.forEach(function (n) { tr[n.dataset.i18n] = n.textContent; });
+      var btn = document.getElementById("lang");
+
+      function apply(lang) {
+        var table = lang === "en" ? en : tr;
+        nodes.forEach(function (n) {
+          var v = table[n.dataset.i18n];
+          if (v) n.textContent = v;
+        });
+        document.documentElement.lang = lang;
+        btn.textContent = lang === "en" ? "TR" : "EN";
+        try { localStorage.setItem("ef-lang", lang); } catch (e) {}
+      }
+
+      var saved = null;
+      try { saved = localStorage.getItem("ef-lang"); } catch (e) {}
+      var initial = saved || ((navigator.language || "tr").toLowerCase().indexOf("tr") === 0 ? "tr" : "en");
+      apply(initial);
+      btn.addEventListener("click", function () {
+        apply(document.documentElement.lang === "en" ? "tr" : "en");
+      });
+      document.getElementById("year").textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
